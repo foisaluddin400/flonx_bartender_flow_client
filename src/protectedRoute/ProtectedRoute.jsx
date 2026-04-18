@@ -41,7 +41,7 @@ const ProtectedRoute = ({ children }) => {
   const { pathname } = useLocation();
 
   if (!token) {
-      return <Navigate to="/auth/login" state={{ path: pathname }}></Navigate>;
+      return <Navigate to="/login" state={{ path: pathname }}></Navigate>;
   }
   return children;
 };
