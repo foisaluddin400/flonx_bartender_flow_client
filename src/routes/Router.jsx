@@ -44,6 +44,7 @@ import RegisterVerify from "../Auth/RegisterVerify";
 import ConnectStripe from "../Auth/ConnectStripe";
 import CompleteProfile from "../Auth/CompleteProfile";
 import JoinAs from "../Auth/JoinAs";
+import ProtectedRoute from "../protectedRoute/ProtectedRoute";
 
 
 export const router = createBrowserRouter([
@@ -51,7 +52,7 @@ export const router = createBrowserRouter([
     path: "/",
     element: (
      
-        <DashboardLayout></DashboardLayout>
+        <ProtectedRoute><DashboardLayout></DashboardLayout></ProtectedRoute>
       
     ),
     children: [
