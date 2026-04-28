@@ -8,6 +8,8 @@ import image from "../../assets/header/image.png";
 import { Link, useSearchParams } from "react-router-dom";
 import DetailsIco from "../../components/icon/DetailsIco";
 import { useGetMyShiftQuery } from "../redux/api/shiftApi";
+import NoData from "../../components/NoData";
+import { PageLoader } from "../../components/Loading";
 
 const tabs = ["Requested", "Active", "Upcoming", "Completed", "Rejected", "Cancelled"]; // 🔥 added 2 new tabs: Rejected, Cancelled
 
@@ -34,7 +36,7 @@ const ShiftCard = ({ item }) => {
     });
 
   return (
-    <div className="bg-gradient-to-br from-[#1a0f2e] to-[#140a24] rounded-2xl p-3 border border-[#2A2448] shadow-lg">
+    <div className="bg-gradient-to-br mb-3 from-[#1a0f2e] to-[#140a24] rounded-2xl p-3 border border-[#2A2448] shadow-lg">
       
       {/* Top */}
       <div className="flex items-center justify-between">
@@ -144,13 +146,13 @@ const MyShifts = () => {
 
       {/* Cards */}
       {isLoading ? (
-        <p className="text-white">Loading...</p>
+        <PageLoader></PageLoader>
       ) : formattedData.length > 0 ? (
         formattedData.map((item) => (
           <ShiftCard key={item.id} item={item} />
         ))
       ) : (
-        <p className="text-gray-400">No shifts found</p>
+        <NoData></NoData>
       )}
     </div>
   );

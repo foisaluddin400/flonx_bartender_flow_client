@@ -10,6 +10,8 @@ import {
   useUpdateShiftRequestMutation,
 } from "../redux/api/shiftApi";
 import { message, Spin } from "antd";
+import { PageLoader } from "../../components/Loading";
+import NoData from "../../components/NoData";
 
 const Box = ({ title, value }) => (
   <div className="mt-2 bg-[#1A0E2E] rounded-2xl p-4 shadow-lg border border-[#2A2448]">
@@ -28,8 +30,8 @@ const ShiftDetails = () => {
 
   const { data, isLoading, isError } = useGetSingleShiftQuery({ id });
 
-  if (isLoading) return <p className="text-white p-4">Loading...</p>;
-  if (isError) return <p className="text-red-500 p-4">Error loading data</p>;
+  if (isLoading) return <PageLoader></PageLoader>;
+  if (isError) return <NoData></NoData>;
 
   const shift = data?.data;
 

@@ -17,6 +17,7 @@ import {
   useUpdateProfileMutation,
   useGetProfileQuery,
 } from "../redux/api/userApi";
+import { PageLoader } from "../../components/Loading";
 
 const UpdateVenyeProfile = () => {
   const { data: profileData, isLoading: profileLoading } =
@@ -106,7 +107,7 @@ const UpdateVenyeProfile = () => {
   };
 
   if (profileLoading) {
-    return <p className="text-white p-3">Loading...</p>;
+    return <PageLoader></PageLoader>;
   }
 
   return (

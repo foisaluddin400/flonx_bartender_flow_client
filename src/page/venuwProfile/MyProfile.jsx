@@ -3,16 +3,18 @@ import { Star, Pencil } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Navigate } from "../../Navigate";
 import { useGetProfileQuery } from "../redux/api/userApi";
+import { PageLoader } from "../../components/Loading";
+import NoData from "../../components/NoData";
 
 const MyProfile = () => {
   const { data: profileData, isLoading, isError } = useGetProfileQuery();
 
   if (isLoading) {
-    return <p className="text-white p-3">Loading...</p>;
+    return <PageLoader></PageLoader>;
   }
 
   if (isError) {
-    return <p className="text-red-400 p-3">Something went wrong!</p>;
+    return <NoData></NoData>;
   }
 
   const profile = profileData?.data;

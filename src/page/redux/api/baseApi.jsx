@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { logout } from "../features/auth/authSlice"; // path adjust
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://10.10.20.9:3500/api/v1",
+  baseUrl: "https://rnj64vmh-3500.inc1.devtunnels.ms/api/v1",
 
   prepareHeaders: (headers, { getState }) => {
     const token = getState().logInUser.token;
@@ -36,4 +36,4 @@ export const baseApi = createApi({
   tagTypes: ["overview", "host"],
   endpoints: () => ({}),
 });
-export const imageUrl = "http://10.10.20.9:3500";
+export const imageUrl = "https://rnj64vmh-3500.inc1.devtunnels.ms";

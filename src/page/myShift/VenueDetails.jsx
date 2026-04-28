@@ -2,6 +2,8 @@ import { useParams } from 'react-router-dom';
 import Image1 from '../../assets/header/image.png';
 import { Navigate } from '../../Navigate';
 import { useGetSingleVenueShiftQuery } from '../redux/api/shiftApi';
+import { PageLoader } from '../../components/Loading';
+import NoData from '../../components/NoData';
 
 const VenueDetails = () => {
   const { id } = useParams();
@@ -11,8 +13,8 @@ const VenueDetails = () => {
 
   const venue = singleVenueData?.data; // 👈 main data
 
-  if (isLoading) return <p className="text-white">Loading...</p>;
-  if (isError) return <p className="text-red-500">Error loading data</p>;
+  if (isLoading) return <PageLoader></PageLoader>;
+  if (isError) return <NoData></NoData>;
 
   return (
     <div className="px-4 pt-6 pb-11 text-white">

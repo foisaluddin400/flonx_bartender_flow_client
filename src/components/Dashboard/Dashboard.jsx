@@ -6,6 +6,8 @@ import { useGetMyShiftQuery } from "../../page/redux/api/shiftApi";
 import LocationIco from "../icon/LocationIco";
 import CalenderIco from "../icon/CalenderIco";
 import DetailsIco from "../icon/DetailsIco";
+import { PageLoader } from "../Loading";
+import NoData from "../NoData";
 
 const Card = ({ item }) => {
   const formatDate = (date) => new Date(date).toLocaleDateString();
@@ -85,13 +87,13 @@ const Section = ({ title, status }) => {
       </div>
 
       {isLoading ? (
-        <p className="text-gray-400">Loading...</p>
+        <PageLoader></PageLoader>
       ) : formattedData.length > 0 ? (
         formattedData.slice(0, 4).map((item) => (
           <Card key={item.id} item={item} />
         ))
       ) : (
-        <p className="text-gray-500">No data</p>
+        <NoData></NoData>
       )}
     </div>
   );
