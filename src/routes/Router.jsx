@@ -3,8 +3,6 @@ import DashboardLayout from "../layout/dashboardLayout/DashboardLayout";
 import Dashboard from "../components/Dashboard/Dashboard";
 import UserManagement from "../page/UserManagement/UserManagement";
 
-
-
 import Profile from "../page/Settings/Profile";
 import TermsCondition from "../page/Settings/TermsCondition";
 import FAQ from "../page/Settings/FAQ";
@@ -46,15 +44,10 @@ import CompleteProfile from "../Auth/CompleteProfile";
 import JoinAs from "../Auth/JoinAs";
 import ProtectedRoute from "../protectedRoute/ProtectedRoute";
 
-
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-     
-        <DashboardLayout></DashboardLayout>
-      
-    ),
+    element: (<DashboardLayout></DashboardLayout>),
     children: [
       {
         path: "/",
@@ -64,31 +57,31 @@ export const router = createBrowserRouter([
         path: "/dashboard/UserManagement",
         element: <UserManagement></UserManagement>,
       },
-     {
+      {
         path: "/dashboard/productManagement",
         element: <ProductManage></ProductManage>,
       },
-   {
+      {
         path: "/dashboard/shifts",
-        element: <MyShifts></MyShifts>
+        element: <MyShifts></MyShifts>,
       },
-       {
+      {
         path: "/dashboard/shifts/venueDetails/:id",
-        element: <VenueDetails></VenueDetails>
+        element: <VenueDetails></VenueDetails>,
       },
-       {
+      {
         path: "/dashboard/shifts/details/:id",
-        element: <ShiftDetails></ShiftDetails>
+        element: <ShiftDetails></ShiftDetails>,
       },
       {
         path: "/dashboard/productManagement/details/:id",
-        element: <ProductDetails></ProductDetails>  ,
+        element: <ProductDetails></ProductDetails>,
       },
       {
         path: "/dashboard/ManageShifts",
         element: <ManageShifts></ManageShifts>,
       },
-        {
+      {
         path: "/dashboard/ManageShifts/add_request",
         element: <AddManageShift></AddManageShift>,
       },
@@ -97,12 +90,10 @@ export const router = createBrowserRouter([
         element: <FindBarthender></FindBarthender>,
       },
       {
-
         path: "/dashboard/ManageShifts/details/:id",
         element: <ShiftDetails></ShiftDetails>,
       },
-        {
-
+      {
         path: "/dashboard/BartenderShifts/details/:id",
         element: <BartenderDetails></BartenderDetails>,
       },
@@ -114,7 +105,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/productManagement/edit/:id",
         element: <EditProduct></EditProduct>,
       },
-       {
+      {
         path: "/dashboard/earning",
         element: <Earning></Earning>,
       },
@@ -122,17 +113,17 @@ export const router = createBrowserRouter([
         path: "/dashboard/VenueProfile",
         element: <VenueProfile></VenueProfile>,
       },
-        {
+      {
         path: "/dashboard/myProfile",
-        element: <MyProfile></MyProfile>
+        element: <MyProfile></MyProfile>,
       },
-     {
+      {
         path: "/dashboard/accountSetting",
-        element: <AccountSetting></AccountSetting>
+        element: <AccountSetting></AccountSetting>,
       },
       {
         path: "/dashboard/change_password",
-        element: <PassWordChange></PassWordChange>
+        element: <PassWordChange></PassWordChange>,
       },
       {
         path: "/dashboard/UpdateProfile",
@@ -147,21 +138,15 @@ export const router = createBrowserRouter([
         element: <ManageProfile></ManageProfile>,
       },
 
-
-  {
+      {
         path: "/dashboard/updateProfile",
         element: <UpdateProfile></UpdateProfile>,
       },
 
-
-        {
+      {
         path: "/dashboard/updatePassword",
         element: <UpdatePassword> </UpdatePassword>,
       },
-
-
-
-
 
       {
         path: "/dashboard/CategoriesManagement/Categories",
@@ -175,7 +160,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/CategoriesManagement/Subcategory",
         element: <Subcategory></Subcategory>,
       },
-     
+
       {
         path: "/dashboard/Settings/profile",
         element: <Profile></Profile>,
@@ -204,40 +189,44 @@ export const router = createBrowserRouter([
         path: "/dashboard/Settings/PrivacyPolicy",
         element: <PrivacyPolicy></PrivacyPolicy>,
       },
-      {
-    path: "/login",
-    element: <Login></Login>,
-  },
-  {
-    path: "/joinAs",
-    element: <JoinAs></JoinAs>,
-  },
-   {
-    path: "/completeProfile",
-    element: <CompleteProfile></CompleteProfile>,
-  },
-   {
-    path: "/connectStripe",
-    element: <ConnectStripe></ConnectStripe>,
-  },
-  {
-    path: "/forgot-password",
-    element: <ForgetPass></ForgetPass>,
-  },
-   {
-    path: "/registerVerify",
-    element: <RegisterVerify></RegisterVerify>,
-  },
-  {
-    path: "/verification",
-    element: <Verify></Verify>,
-  },
-  {
-    path: "/reset-password",
-    element: <ResetPass></ResetPass>,
-  },
+     
     ],
   },
 
+ {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/joinAs",
+        element: <JoinAs></JoinAs>,
+      },
+      {
+        path: "/completeProfile",
+        element: <CompleteProfile></CompleteProfile>,
+      },
+      {
+        path: "/connectStripe",
+        element: <ConnectStripe></ConnectStripe>,
+      },
+      {
+        path: "/forgot-password",
+        element: <ForgetPass></ForgetPass>,
+      },
+      {
+        path: "/registerVerify",
+        element: <RegisterVerify></RegisterVerify>,
+      },
+      {
+        path: "/verification",
+        element: <Verify></Verify>,
+      },
+      {
+        path: "/reset-password",
+        element: <ResetPass></ResetPass>,
+      }
 
+
+    
+ 
 ]);
