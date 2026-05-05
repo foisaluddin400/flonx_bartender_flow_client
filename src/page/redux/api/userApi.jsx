@@ -35,7 +35,7 @@ const useApi = baseApi.injectEndpoints({
     resentVerify: builder.mutation({
       query: (data) => {
         return {
-          url: "/user/resend-verify-code",
+          url: "/auth/resend-reset-code",
           method: "POST",
           body: data,
         };
@@ -54,13 +54,22 @@ const useApi = baseApi.injectEndpoints({
     forgotPassword: builder.mutation({
       query: (email) => {
         return {
-          url: "/auth/forgot-password",
+          url: "/auth/forget-password",
           method: "POST",
           body: email,
         };
       },
     }),
     registerVerify: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/auth/verify-reset-otp",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
+     registerVerifyUser: builder.mutation({
       query: (data) => {
         return {
           url: "/user/verify-code",
@@ -73,7 +82,7 @@ const useApi = baseApi.injectEndpoints({
       query: (data) => {
         return {
           url: "/auth/reset-password",
-          method: "PUT",
+          method: "POST",
           body: data,
         };
       },
@@ -143,4 +152,5 @@ useGetProfileQuery,
   useResentVerifyMutation,
   useAddVenueMutation,
   useUpdateBartenderProfileMutation,
+  useRegisterVerifyUserMutation,
 } = useApi;

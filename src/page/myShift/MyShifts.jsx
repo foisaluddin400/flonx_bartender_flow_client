@@ -115,6 +115,8 @@ const MyShifts = () => {
     status: activeTab,
   });
 
+  console.log(data)
+
   const formattedData =
     data?.data?.result?.map((item) => ({
       id: item._id,
