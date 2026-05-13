@@ -12,6 +12,7 @@ import {
 import { message, Spin } from "antd";
 import { PageLoader } from "../../components/Loading";
 import NoData from "../../components/NoData";
+import { Star } from "lucide-react";
 
 const Box = ({ title, value }) => (
   <div className="mt-2 bg-[#1A0E2E] rounded-2xl p-4 shadow-lg border border-[#2A2448]">
@@ -29,7 +30,7 @@ const ShiftDetails = () => {
     useUpdateShiftRequestMutation();
 
   const { data, isLoading, isError } = useGetSingleShiftQuery({ id });
-
+  console.log(data);
   if (isLoading) return <PageLoader></PageLoader>;
   if (isError) return <NoData></NoData>;
 
@@ -59,9 +60,7 @@ const ShiftDetails = () => {
       <div className="flex justify-between">
         <div className="flex items-center gap-2">
           <Navigate />
-          <h1 className="text-[16px] italic font-montserrat">
-            Shift Details
-          </h1>
+          <h1 className="text-[16px] italic font-montserrat">Shift Details</h1>
         </div>
 
         <Link to={`/dashboard/shifts/venueDetails/${shift?.venue?._id}`}>
@@ -90,7 +89,7 @@ const ShiftDetails = () => {
       <Box
         title="Date"
         value={`${new Date(shift?.startDateTime).toDateString()} - ${new Date(
-          shift?.endDateTime
+          shift?.endDateTime,
         ).toDateString()}`}
       />
 
@@ -116,17 +115,57 @@ const ShiftDetails = () => {
         </h1>
 
         <div className="flex justify-between items-center">
-          <p className="text-gray-400 text-sm">Shift Rate</p>
-          <p className="text-white font-semibold">
-            $ {shift?.shiftRate}
+          <p className="text-[#C9C6D6] text-sm mb-3 flex items-center gap-2">
+            Shift Rate
           </p>
+          <p className="text-white font-semibold">{shift?.shiftRate}$ Hourly</p>
         </div>
+      </div>
+
+      <div className="bg-[#822CE71A] border mt-3 border-[#2A2448] rounded-xl p-4">
+        <p className="text-[#C9C6D6] text-sm mb-3 flex items-center gap-2">
+          Overall Rating
+        </p>
+        <div className="flex items-center gap-2 text-yellow-400 text-sm">
+          <Star className="w-4 h-4 fill-yellow-400" />
+          <span>{shift?.avgRating}</span>
+        </div>
+      </div>
+
+      <div className="bg-[#822CE71A] border mt-3 border-[#2A2448] rounded-xl p-4">
+        <p className="text-[#C9C6D6] text-sm mb-3 flex items-center gap-2">
+          Tip info
+        </p>
+        <div className="flex justify-between">
+          <div className=" text-white text-sm">
+            <p className="text-[#C9C6D6] text-sm mb-3 flex items-center gap-2">
+              Number of Tips
+            </p>
+            <span>{shift?.totalTipCount}</span>
+          </div>
+          <div>
+            <p className="text-[#C9C6D6] text-sm mb-3 flex items-center gap-2">
+              Total Tips
+            </p>
+            <span>{shift?.totalTipAmount}$</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-[#1A0E2E] p-5 rounded-2xl text-center mt-4">
+        <h1 className="text-lg font-semibold">
+          Your shift starts in {new Date(shift?.startDateTime).toLocaleString()}{" "}
+          - {new Date(shift?.endDateTime).toLocaleString()}
+        </h1>
+
+        <h1 className="text-gray-400 text-sm mt-2">
+          You will be able to start managing orders once the shift begins.
+        </h1>
       </div>
 
       {/* 🔥 CONDITIONAL BUTTONS */}
       {shift?.status === "Requested" && (
         <div className="py-4 bg-[#0b0618] flex gap-3 bottom-0 left-0">
-          
           {/* Reject */}
           <button
             onClick={() => handleShiftAction(false)}

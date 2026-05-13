@@ -78,7 +78,7 @@ const Header = () => {
       <div className="flex justify-between pb-3 px-3">
         {/* Logo */}
         <div>
-          <img src={logo} alt="Logo" className="w-[115px]" />
+          <Link to={'/'}><img src={logo} alt="Logo" className="w-[115px]" /></Link>
         </div>
 
         {/* Menu Icon */}
