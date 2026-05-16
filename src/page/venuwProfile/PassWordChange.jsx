@@ -1,7 +1,15 @@
 import React, { useState } from "react";
 import { Navigate } from "../../Navigate";
+import { useChangePasswordMutation } from "../redux/api/userApi";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { logout } from "../redux/features/auth/authSlice";
+import { message } from "antd";
 
 const PassWordChange = () => {
+    const [updatePassword, { isLoading }] = useChangePasswordMutation();
+  const dispatch = useDispatch();
+const navigate = useNavigate()
   const [formValues, setFormValues] = useState({
     oldPassword: "",
     newPassword: "",
@@ -10,28 +18,49 @@ const PassWordChange = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormValues((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // password match check
     if (formValues.newPassword !== formValues.confirmPassword) {
-      alert("Passwords do not match");
-      return;
+      return message.error("Passwords do not match");
     }
 
-    console.log("Password Data:", formValues);
-    alert("Password updated successfully!");
+    try {
+      const data = {
+        oldPassword: formValues.oldPassword,
+        newPassword: formValues.newPassword,
+        confirmNewPassword: formValues.confirmPassword,
+      };
 
-    setFormValues({
-      oldPassword: "",
-      newPassword: "",
-      confirmPassword: "",
-    });
+      const res = await updatePassword(data).unwrap();
+
+      message.success(res?.message || "Password updated successfully");
+
+      // reset form
+      setFormValues({
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+      dispatch(logout());
+
+      navigate('/login')
+
+    } catch (err) {
+      console.error(err);
+
+      message.error(
+        err?.data?.message || "Failed to update password"
+      );
+    }
   };
 
   return (
@@ -96,9 +125,10 @@ const PassWordChange = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="bg-gradient-to-tr w-full from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-full"
+              disabled={isLoading}
+              className="bg-gradient-to-tr w-[185px] from-[#822CE7] to-[#BB82FF] text-white shadow-md px-3 py-2 rounded-full disabled:opacity-50"
             >
-              Update Password
+              {isLoading ? "Updating..." : "Update Password"}
             </button>
           </form>
         </div>

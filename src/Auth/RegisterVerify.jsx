@@ -31,7 +31,7 @@ const RegisterVerify = () => {
 
   // Verify OTP
   const handleVerify = async () => {
-    if (otp.length !== 6) {
+    if (otp.length !== 4) {
       message.error("Please enter the 6-digit code.");
       return;
     }
@@ -79,7 +79,7 @@ const RegisterVerify = () => {
           <OTPInput
             value={otp}
             onChange={setOtp}
-            numInputs={6}
+            numInputs={4}
             renderSeparator={<span className="mx-1"></span>}
             renderInput={(props) => (
               <input
