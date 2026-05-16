@@ -69,7 +69,18 @@ const useApi = baseApi.injectEndpoints({
         };
       },
     }),
-     registerVerifyUser: builder.mutation({
+
+
+        deleteAccount: builder.mutation({
+      query: (data) => ({
+        url: `/user/delete-account`,
+        method: "DELETE",
+        body: data,
+      }),
+      invalidatesTags: ["updateProfile"],      
+    }),
+
+    registerVerifyUser: builder.mutation({
       query: (data) => {
         return {
           url: "/user/verify-code",
@@ -88,7 +99,7 @@ const useApi = baseApi.injectEndpoints({
       },
     }),
     updateProfile: builder.mutation({
-      query: ({data}) => {
+      query: ({ data }) => {
         return {
           url: "/user/update-profile",
           method: "PATCH",
@@ -98,8 +109,8 @@ const useApi = baseApi.injectEndpoints({
       invalidatesTags: ["updateProfile"],
     }),
 
-      updateBartenderProfile: builder.mutation({
-      query: ({data}) => {
+    updateBartenderProfile: builder.mutation({
+      query: ({ data }) => {
         return {
           url: "/user/update-profile",
           method: "PATCH",
@@ -112,7 +123,7 @@ const useApi = baseApi.injectEndpoints({
       query: (data) => {
         return {
           url: "/auth/change-password",
-          method: "PUT",
+          method: "POST",
           body: data,
         };
       },
@@ -140,7 +151,7 @@ const useApi = baseApi.injectEndpoints({
 
 export const {
   useLoginAdminMutation,
-useGetProfileQuery,
+  useGetProfileQuery,
   useForgotPasswordMutation,
   useRegisterVerifyMutation,
   useResetPasswordMutation,
@@ -153,4 +164,5 @@ useGetProfileQuery,
   useAddVenueMutation,
   useUpdateBartenderProfileMutation,
   useRegisterVerifyUserMutation,
+  useDeleteAccountMutation
 } = useApi;
