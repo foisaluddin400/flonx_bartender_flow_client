@@ -7,6 +7,7 @@ import LogoutIco from "../../components/icon/LogoutIco";
 import ArrayRightIco from "../../components/icon/ArrayRightIco";
 import { Navigate } from "../../Navigate";
 import { Link } from "react-router-dom";
+import { MdOutlineNotificationImportant } from "react-icons/md";
 
 const VenueProfile = () => {
   return (
@@ -25,6 +26,19 @@ const VenueProfile = () => {
               <ProfileIcon />
             </div>
             <span className="text-white text-sm font-medium">My Profile</span>
+          </div>
+          <span>
+            <ArrayRightIco></ArrayRightIco>
+          </span>
+        </div></Link>
+
+           <Link to={'/dashboard/notifications'}>
+        <div className="flex items-center mt-2 justify-between bg-[#1A0E2E] rounded-2xl p-3 shadow-lg border border-[#2A2448]">
+          <div className="flex items-center gap-3">
+            <div className="bg-[#822CE71A] p-2 rounded-lg">
+              <MdOutlineNotificationImportant className="text-[#822CE7]"/>
+            </div>
+            <span className="text-white text-sm font-medium">Notifications</span>
           </div>
           <span>
             <ArrayRightIco></ArrayRightIco>

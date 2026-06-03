@@ -4,6 +4,7 @@ import { useLoginAdminMutation } from "../page/redux/api/userApi";
 import { message, Spin } from "antd";
 import { useDispatch } from "react-redux";
 import { setToken } from "../page/redux/features/auth/authSlice";
+import { FaEyeSlash, FaRegEye } from "react-icons/fa";
 
 const Login = () => {
   const [login, { isLoading }] = useLoginAdminMutation();
@@ -134,7 +135,7 @@ const handleSubmit = async (e) => {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
               >
-                {showPassword ? "🙈" : "👁️"}
+                {showPassword ? <FaRegEye /> : <FaEyeSlash />}
               </button>
             </div>
           </div>

@@ -109,6 +109,10 @@ export const router = createBrowserRouter([
         path: "/dashboard/earning",
         element: <Earning></Earning>,
       },
+       {
+        path: "/dashboard/notifications",
+        element: <Notification></Notification>
+      },
       {
         path: "/dashboard/VenueProfile",
         element: <VenueProfile></VenueProfile>,
@@ -169,10 +173,7 @@ export const router = createBrowserRouter([
         path: "/dashboard/Settings/profile",
         element: <Profile></Profile>,
       },
-      {
-        path: "/dashboard/Settings/notification",
-        element: <Notification></Notification>,
-      },
+     
       {
         path: "/dashboard/Settings/Terms&Condition",
         element: <TermsCondition></TermsCondition>,

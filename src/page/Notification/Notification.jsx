@@ -31,7 +31,12 @@ const Notification = () => {
 
   return (
     <div className=" p-3 h-[87vh] overflow-auto">
-      <Navigate title={"Notification"} />
+      <div className="flex items-center py-4">
+              <Navigate />
+              <h1 className="text-[16px] font-montserrat italic text-white">
+               Notifications
+              </h1>
+            </div>
 
       <div className="space-y-4">
         {notifications.map((note) => (
