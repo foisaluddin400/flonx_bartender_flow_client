@@ -58,7 +58,11 @@ const handleSubmit = async (e) => {
       dispatch(setToken(res?.data?.accessToken));
 
       console.log("Login Success:", res);
-      window.location.reload("/");
+       navigate("/");
+
+  setTimeout(() => {
+    window.location.reload();
+  }, 100);
       message.success(res?.message);
 
       // remember me
