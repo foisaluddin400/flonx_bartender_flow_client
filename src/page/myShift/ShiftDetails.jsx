@@ -23,6 +23,7 @@ const Box = ({ title, value }) => (
 
 const ShiftDetails = () => {
   const { id } = useParams();
+  console.log(id)
 
   const [actionType, setActionType] = useState(null);
 
