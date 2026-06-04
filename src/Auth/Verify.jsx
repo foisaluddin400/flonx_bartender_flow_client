@@ -39,8 +39,8 @@ const Verify = () => {
       return;
     }
 
-    if (otp.length !== 6) {
-      message.error("Enter 6-digit OTP");
+    if (otp.length !== 4) {
+      message.error("Enter 4-digit OTP");
       return;
     }
 
@@ -75,7 +75,7 @@ const Verify = () => {
           <OTPInput
             value={otp}
             onChange={setOtp}
-            numInputs={6}
+            numInputs={4}
             renderInput={(props) => (
               <input
                 {...props}
