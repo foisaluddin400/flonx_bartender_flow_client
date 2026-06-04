@@ -1,3 +1,4 @@
+
 import React from "react";
 import { User, Settings, LogOut } from "lucide-react";
 
@@ -8,8 +9,13 @@ import ArrayRightIco from "../../components/icon/ArrayRightIco";
 import { Navigate } from "../../Navigate";
 import { Link } from "react-router-dom";
 import { MdOutlineNotificationImportant } from "react-icons/md";
+import { useGetMyNotificationQuery } from "../redux/api/shiftApi";
 
 const VenueProfile = () => {
+  const { data: notificationData, isLoading } =
+    useGetMyNotificationQuery()
+      const unreadCount =
+    notificationData?.data?.meta?.unreadCount || 0;
   return (
     <div className=" px-3">
       <div className="">
@@ -39,6 +45,9 @@ const VenueProfile = () => {
               <MdOutlineNotificationImportant className="text-[#822CE7]"/>
             </div>
             <span className="text-white text-sm font-medium">Notifications</span>
+            <span className="bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+              {unreadCount}
+            </span>
           </div>
           <span>
             <ArrayRightIco></ArrayRightIco>
