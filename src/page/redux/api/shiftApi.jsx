@@ -2,13 +2,32 @@ import { baseApi } from "./baseApi";
 
 const shift = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-getMyShift: builder.query({
-  query: ({ status }) => ({
-    url: `/shift/my-shift?status=${status}`,
-    method: "GET",
-  }),
-  providesTags: ["updateProfile"],
-}),
+    getMyShift: builder.query({
+      query: ({ status }) => ({
+        url: `/shift/my-shift?status=${status}`,
+        method: "GET",
+      }),
+      providesTags: ["updateProfile"],
+    }),
+
+getMyNotification: builder.query({
+      query: () => ({
+        url: `/notification/get-notifications`,
+        method: "GET",
+      }),
+      providesTags: ["updateProfile"],
+    }),
+
+  updateSeen: builder.mutation({
+      query: () => {
+        return {
+          url: `/notification/see-notifications`,
+          method: "PATCH",
+        
+        };
+      },
+      invalidatesTags: ["updateProfile"],
+    }),
 
     getSingleShift: builder.query({
       query: ({ id }) => {
@@ -20,7 +39,7 @@ getMyShift: builder.query({
       providesTags: ["updateProfile"],
     }),
 
-     getSingleVenueShift: builder.query({
+    getSingleVenueShift: builder.query({
       query: ({ id }) => {
         return {
           url: `/venue/get-single/${id}`,
@@ -65,6 +84,15 @@ getMyShift: builder.query({
       },
       invalidatesTags: ["updateProfile"],
     }),
+      deleteNotification: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/notification/delete/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["updateProfile"],
+    }),
   }),
 });
 
@@ -74,5 +102,9 @@ export const {
   useGetAllShiftQuery,
   useGetSingleShiftQuery,
   useUpdateShiftRequestMutation,
-    useGetSingleVenueShiftQuery,
+  useGetSingleVenueShiftQuery,
+  useGetMyNotificationQuery,
+  useUpdateSeenMutation,
+  useDeleteNotificationMutation
+
 } = shift;
